@@ -49,7 +49,10 @@ app.use(
 app.use(express.json({ limit: "100kb" }));
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500",
+    origin: [
+      "http://127.0.0.1:5500",
+      "https://e-commerce-fullstack-project.pages.dev"
+    ],
   }),
 );
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));

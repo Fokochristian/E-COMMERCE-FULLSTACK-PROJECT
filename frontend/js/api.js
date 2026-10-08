@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:5000/api/v1";
+const API_BASE_URL = "https://e-commerce-api-nux3.onrender.com/api/v1";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
