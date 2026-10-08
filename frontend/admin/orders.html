@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/orders.js" defer></script>
+
+    <title>Orders | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+
+<body class="admin-page">
+
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+
+        <nav class="admin-navigation">
+
+            <a href="index.html" class="admin-nav-link"> <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="products.html" class="admin-nav-link"> <i class="fa-solid fa-box"></i>
+                Products
+            </a>
+
+            <a href="orders.html" class="admin-nav-link active"> <i class="fa-solid fa-cart-shopping"></i>
+                Orders
+            </a>
+
+            <a href="customers.html" class="admin-nav-link"> <i class="fa-solid fa-users"></i>
+                Customers
+            </a>
+
+            <a href="categories.html" class="admin-nav-link"> <i class="fa-solid fa-layer-group"></i>
+                Categories
+            </a>
+
+            <a href="brands.html" class="admin-nav-link"> <i class="fa-solid fa-tags"></i>
+                Brands
+            </a>
+
+            <a href="payments.html" class="admin-nav-link">  <i class="fa-solid fa-credit-card"></i>
+                Payments
+            </a>
+
+            <a href="shipment.html" class="admin-nav-link">  <i class="fa-solid fa-truck"></i>
+                Shipment
+            </a>
+
+            <a href="analytics.html" class="admin-nav-link"> <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main content -->
+
+    <div class="admin-main">
+
+
+        <!-- Topbar -->
+
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2><i class="fa-solid fa-cart-shopping"></i>Orders</h2>
+            </div>
+
+
+            <div class="admin-user-area">
+
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+
+                <button
+                    id="admin-logout-button"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page content -->
+
+        <main class="admin-content">
+
+
+            <!-- Page heading -->
+
+            <section
+                class="orders-page-header"
+                aria-labelledby="orders-title"
+            >
+
+                <div>
+
+                    <h1 id="orders-title">
+                        Orders
+                    </h1>
+
+                    <p>
+                        Manage customer orders, payments, and order status.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Order overview -->
+
+           <section 
+            class="orders-overview" 
+            aria-labelledby="orders-overview-title"
+            >
+
+                <h2 id="orders-overview-title">
+                    Order Overview
+                </h2>
+
+
+                <div class="orders-overview-grid">
+
+
+                    <div class="orders-overview-card">
+
+                        <div class="orders-overview-content">
+
+                            <h3>
+                                Total Orders
+                            </h3>
+
+                            <p id="total-orders">
+                                0
+                            </p>
+
+                            <span class="card-total-order">
+                                Total number of orders
+                            </span>
+
+                        </div>
+
+                        <div class="orders-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton order-skeleton-title"></div>
+                            <div class="dashboard-skeleton order-skeleton-number"></div>
+                            <div class="dashboard-skeleton order-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-overview-card">
+
+                        <div class="orders-overview-content">
+
+                            <h3>
+                                Pending
+                            </h3>
+
+                            <p id="pending-orders">
+                                0
+                            </p>
+
+                            <span class="card-pending">
+                                Total number of pending orders
+                            </span>
+
+                        </div>
+
+                        <div class="orders-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton order-skeleton-title"></div>
+                            <div class="dashboard-skeleton order-skeleton-number"></div>
+                            <div class="dashboard-skeleton order-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-overview-card">
+
+                        <div class="orders-overview-content">
+
+                            <h3>
+                                Paid
+                            </h3>
+
+                            <p id="paid-orders">
+                                0
+                            </p>
+
+                            <span class="card-paid">
+                                Total number of paid orders
+                            </span>
+
+                        </div>
+
+                        <div class="orders-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton order-skeleton-title"></div>
+                            <div class="dashboard-skeleton order-skeleton-number"></div>
+                            <div class="dashboard-skeleton order-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-overview-card">
+
+                        <div class="orders-overview-content">
+
+                            <h3>
+                                Shipped
+                            </h3>
+
+                            <p id="shipped-orders">
+                                0
+                            </p>
+
+                            <span class="card-shipped">
+                                Total number of shipped orders
+                            </span>
+
+                        </div>
+
+                        <div class="orders-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton order-skeleton-title"></div>
+                            <div class="dashboard-skeleton order-skeleton-number"></div>
+                            <div class="dashboard-skeleton order-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-overview-card">
+
+                        <div class="orders-overview-content">
+
+                            <h3>
+                                Delivered
+                            </h3>
+
+                            <p id="delivered-orders">
+                                0
+                            </p>
+
+                            <span class="card-delivered">
+                                Total number of delivered orders
+                            </span>
+
+                        </div>
+
+                        <div class="orders-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton order-skeleton-title"></div>
+                            <div class="dashboard-skeleton order-skeleton-number"></div>
+                            <div class="dashboard-skeleton order-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-overview-card">
+
+                        <div class="orders-overview-content">
+
+                            <h3>
+                                Cancelled
+                            </h3>
+
+                            <p id="cancelled-orders">
+                                0
+                            </p>
+
+                            <span class="card-cancelled">
+                                Total number of cancelled orders
+                            </span>
+
+                        </div>
+
+                        <div class="orders-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton order-skeleton-title"></div>
+                            <div class="dashboard-skeleton order-skeleton-number"></div>
+                            <div class="dashboard-skeleton order-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+            
+            <!-- Search and filters -->
+
+            <section
+                class="orders-filters"
+                aria-labelledby="order-filters-title"
+            >
+
+                <h2 id="order-filters-title">
+                    Filters
+                </h2>
+
+
+                <form id="order-filter-form">
+
+
+                    <div class="filter-group">
+
+                        <label for="order-status">
+                            Status
+                        </label>
+
+                        <select
+                            id="order-status"
+                            name="status"
+                        >
+
+                            <option value="">
+                                All Statuses
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="paid">
+                                Paid
+                            </option>
+
+                            <option value="shipped">
+                                Shipped
+                            </option>
+
+                            <option value="delivered">
+                                Delivered
+                            </option>
+
+                            <option value="cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button type="submit">
+                            Apply Filters
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="reset-order-filters"
+                        >
+                            Reset
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+            <!-- Orders table -->
+
+            <section
+                class="orders-table-section"
+                aria-labelledby="orders-table-title"
+            >
+
+                <div class="section-heading">
+
+                    <h2 id="orders-table-title">
+                        All Orders
+                    </h2>
+
+                </div>
+
+
+                <div class="orders-table-container">
+
+                    <table class="orders-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">
+                                    Order
+                                </th>
+
+                                <th scope="col">
+                                    Customer
+                                </th>
+
+                                <th scope="col">
+                                    Total
+                                </th>
+
+                                <th scope="col">
+                                    Status
+                                </th>
+
+                                <th scope="col">
+                                    Date
+                                </th>
+
+                                <th scope="col">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="orders-list">
+
+                            <!-- Orders will be inserted here -->
+
+                        </tbody>
+
+                    <tbody class="orders-table-skeleton" aria-hidden="true">
+
+                        <tr>
+                            <td><div class="dashboard-skeleton order-table-skeleton-short"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-name"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-total"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-status"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-date"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-action"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="dashboard-skeleton order-table-skeleton-short"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-name"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-total"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-status"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-date"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-action"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="dashboard-skeleton order-table-skeleton-short"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-name"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-total"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-status"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-date"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-action"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="dashboard-skeleton order-table-skeleton-short"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-name"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-total"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-status"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-date"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-action"></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="dashboard-skeleton order-table-skeleton-short"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-name"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-total"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-status"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-date"></div></td>
+                            <td><div class="dashboard-skeleton order-table-skeleton-action"></div></td>
+                        </tr>
+
+                    </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td colspan="6">
+
+                                    <div class="orders-table-footer">
+
+
+                                        <div class="orders-count">
+
+                                            Showing
+
+                                            <span id="orders-start">
+                                                0
+                                            </span>
+
+                                            -
+
+                                            <span id="orders-end">
+                                                0
+                                            </span>
+
+                                            of
+
+                                            <span id="orders-total">
+                                                0
+                                            </span>
+
+                                            orders
+
+                                        </div>
+
+
+                                        <nav
+                                            class="orders-pagination"
+                                            aria-label="Orders pagination"
+                                        >
+
+                                            <button
+                                                type="button"
+                                                id="previous-page"
+                                                aria-label="Previous page"
+                                                disabled
+                                            >
+                                                Previous
+                                            </button>
+
+
+                                            <span id="current-page-display">
+                                                1/1
+                                            </span>
+
+
+                                            <button
+                                                type="button"
+                                                id="next-page"
+                                                aria-label="Next page"
+                                                disabled
+                                            >
+                                                Next
+                                            </button>
+
+                                        </nav>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- Order details modal -->
+
+<div
+    class="order-modal"
+    id="order-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="order-modal-title"
+    hidden
+>
+
+    <div
+        class="order-modal-overlay"
+        id="order-modal-overlay"
+    ></div>
+
+
+    <div class="order-modal-content">
+
+
+        <div class="order-modal-header">
+
+            <h2 id="order-modal-title">
+                Order Details
+            </h2>
+
+
+            <button
+                type="button"
+                id="close-order-modal"
+                aria-label="Close order details"
+            >
+                &times;
+            </button>
+
+        </div>
+
+
+        <div id="order-details">
+
+            <!-- Order details will be inserted here -->
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

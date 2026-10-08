@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Wishlist | E-Commerce Store</title>
+
+    <link rel="stylesheet" href="css/wishlist.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+
+            <a
+                href="index.html"
+                aria-label="Go to Store Page"
+            >
+                Store
+            </a>
+
+            <div id="mobile-menu">
+
+                <form id="product-search">
+
+                    <label for="search">
+                        Search products
+                    </label>
+
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="Search products..."
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <div id="auth-navigation"></div>
+
+            </div>
+
+            <div id="header-actions">
+
+                <a
+                    href="cart.html"
+                    id="cart-link"
+                    aria-label="Shopping cart"
+                >
+                    Cart
+                </a>
+
+                <button
+                    id="menu-toggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <section aria-labelledby="wishlist-heading">
+
+            <h1 id="wishlist-heading">
+                My Wishlist
+            </h1>
+
+            <a
+                href="index.html"
+                class="continue-shopping"
+            >
+                Continue shopping
+            </a>
+
+            <p
+                id="wishlist-error"
+                role="alert"
+            ></p>
+
+            <div id="wishlist-list"></div>
+
+            <template id="wishlist-product-template">
+
+                <article class="wishlist-product">
+
+                    <img
+                        src=""
+                        alt=""
+                        class="wishlist-product-image"
+                    >
+
+                    <div class="wishlist-product-info">
+
+                        <h2 class="wishlist-product-name"></h2>
+
+                        <p class="wishlist-product-brand"></p>
+
+                        <p class="wishlist-product-category"></p>
+
+                        <p class="wishlist-product-price"></p>
+
+                        <p class="wishlist-product-stock"></p>
+
+                        <a
+                            href=""
+                            class="wishlist-product-link"
+                        >
+                            View product
+                        </a>
+
+                        <button
+                            class="wishlist-add-to-cart"
+                            type="button"
+                        >
+                            Add to cart
+                        </button>
+
+                        <button
+                            class="wishlist-remove"
+                            type="button"
+                        >
+                            Remove from wishlist
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </template>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 E-Commerce Store</p>
+    </footer>
+
+    <script type="module" src="js/wishlist.js"></script>
+
+</body>
+</html>

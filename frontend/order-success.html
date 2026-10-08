@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | E-Commerce Store</title>
+
+    <link rel="stylesheet" href="css/order-success.css">
+</head>
+
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+
+            <a
+                href="index.html"
+                aria-label="Go to Store Page"
+            >
+                Store
+            </a>
+
+            <div id="mobile-menu">
+
+                <form id="product-search">
+
+                    <label for="search">
+                        Search products
+                    </label>
+
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="Search products..."
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <div id="auth-navigation"></div>
+
+            </div>
+
+            <div id="header-actions">
+
+                <a
+                    href="cart.html"
+                    id="cart-link"
+                    aria-label="Shopping cart"
+                >
+                    Cart
+                </a>
+
+                <button
+                    id="menu-toggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section
+            id="order-success"
+            aria-labelledby="success-heading"
+        >
+
+            <h1 id="success-heading">
+                Order Confirmed
+            </h1>
+
+            <p>Thank you for your order!</p>
+
+            <p>Your order has been successfully placed.</p>
+
+            <p id="order-id"></p>
+
+            <div id="order-actions">
+
+                <a
+                    href=""
+                    id="pay-order-link"
+                >
+                    Pay for this order
+                </a>
+
+                <a
+                    href=""
+                    id="view-order-link"
+                >
+                    View order
+                </a>
+
+                <a href="index.html">
+                    Continue shopping
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 E-Commerce Store</p>
+    </footer>
+
+
+    <script type="module" src="js/order-success.js"></script>
+
+</body>
+
+</html>

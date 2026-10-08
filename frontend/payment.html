@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment | E-Commerce Store</title>
+
+    <link rel="stylesheet" href="css/payment.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+
+            <a
+                href="index.html"
+                aria-label="Go to Store Page"
+            >
+                Store
+            </a>
+
+            <div id="mobile-menu">
+
+                <form id="product-search">
+
+                    <label for="search">
+                        Search products
+                    </label>
+
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="Search products..."
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <div id="auth-navigation"></div>
+
+            </div>
+
+            <div id="header-actions">
+
+                <a
+                    href="cart.html"
+                    id="cart-link"
+                    aria-label="Shopping cart"
+                >
+                    Cart
+                </a>
+
+                <button
+                    id="menu-toggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <section aria-labelledby="payment-heading">
+
+            <h1 id="payment-heading">
+                Pay for Your Order
+            </h1>
+
+            <p id="payment-order-id"></p>
+
+            <p id="shipping-fee-notice">
+                <strong>Shipping fee: 2,000 FCFA</strong>
+                <span>An additional 2,000 FCFA shipping fee will be added to your order total.</span>
+            </p>
+
+
+            <form
+                id="payment-form"
+                method="post"
+                novalidate
+            >
+
+                <div>
+
+                    <label for="payment-method">
+                        Payment method
+                    </label>
+
+                    <select
+                        name="payment-method"
+                        id="payment-method"
+                        required
+                    >
+                        <option value="">
+                            Select a payment method
+                        </option>
+
+                        <option value="MTN MONEY">
+                            MTN Money
+                        </option>
+
+                        <option value="ORANGE MONEY">
+                            Orange Money
+                        </option>
+                    </select>
+
+                    <p
+                        id="paymentMethod-error"
+                        role="alert"
+                    ></p>
+
+                </div>
+
+                <div>
+
+                    <label for="payment-phone">
+                        Payment phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="payment-phone"
+                        name="payment-phone"
+                        autocomplete="tel"
+                        required
+                    >
+
+                    <p
+                        id="phoneNumber-error"
+                        role="alert"
+                    ></p>
+
+                </div>
+
+                <button type="submit">
+                    Initiate Payment
+                </button>
+
+            </form>
+
+            <p
+                id="payment-message"
+                role="alert"
+            ></p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 E-Commerce Store</p>
+    </footer>
+
+    <script type="module" src="js/payment.js"></script>
+
+</body>
+</html>
+

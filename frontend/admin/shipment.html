@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/shipment.js" defer></script>
+
+    <title>Shipments | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+
+<body class="admin-page">
+
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+
+        <nav class="admin-navigation">
+
+            <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+            <a href="products.html" class="admin-nav-link"><i class="fa-solid fa-box"></i> Products</a>
+
+            <a href="orders.html" class="admin-nav-link"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+
+            <a href="customers.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Customers</a>
+
+            <a href="categories.html" class="admin-nav-link"><i class="fa-solid fa-layer-group"></i> Categories</a>
+
+            <a href="brands.html" class="admin-nav-link"><i class="fa-solid fa-tags"></i> Brands</a>
+
+            <a href="payments.html" class="admin-nav-link "><i class="fa-solid fa-credit-card"></i> Payments</a>
+
+            <a href="shipment.html" class="admin-nav-link active"><i class="fa-solid fa-truck"></i> Shpiment</a>
+
+            <a href="analytics.html" class="admin-nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+            
+        </nav>
+
+    </aside>
+
+
+    <!-- Main content -->
+
+    <div class="admin-main">
+
+
+        <!-- Topbar -->
+
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2><i class="fa-solid fa-truck"></i> Shipments</h2>
+            </div>
+
+
+            <div class="admin-user-area">
+
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+
+                <button
+                    id="admin-logout-button"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page content -->
+
+        <main class="admin-content">
+
+
+            <!-- Page heading -->
+
+            <section
+                class="shipment-page-header"
+                aria-labelledby="shipment-title"
+            >
+
+                <div>
+
+                    <h1 id="shipment-title">
+                        Shipments
+                    </h1>
+
+                    <p>
+                        Manage customer shipments and delivery status.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Shipment overview -->
+
+            <section
+            class="shipment-overview"
+            aria-labelledby="shipment-overview-title"
+            >
+
+                <h2 id="shipment-overview-title">
+                    Shipment Overview
+                </h2>
+
+
+                <div class="shipment-overview-grid">
+
+
+                    <div class="shipment-overview-card">
+
+                        <div class="shipment-overview-content">
+
+                            <h3>
+                                Total Shipments
+                            </h3>
+
+                            <p id="total-shipments">
+                                0
+                            </p>
+
+                            <span class="card-total-shipment">
+                                Total number of shipment
+                            </span>
+
+                        </div>
+
+                        <div class="shipment-overview-skeleton" aria-hidden="true">
+
+                            <div class="dashboard-skeleton shipment-skeleton-title"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-number"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-text"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="shipment-overview-card">
+
+                        <div class="shipment-overview-content">
+
+                            <h3>
+                                Pending
+                            </h3>
+
+                            <p id="pending-shipments">
+                                0
+                            </p>
+
+                            <span class="card-pending">
+                                Total pending shipment
+                            </span>
+
+                        </div>
+
+                        <div class="shipment-overview-skeleton" aria-hidden="true">
+
+                            <div class="dashboard-skeleton shipment-skeleton-title"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-number"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-text"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="shipment-overview-card">
+
+                        <div class="shipment-overview-content">
+
+                            <h3>
+                                Shipped
+                            </h3>
+
+                            <p id="shipped-shipments">
+                                0
+                            </p>
+
+                            <span class="card-shipped">
+                                Total shipped orders
+                            </span>
+
+                        </div>
+
+                        <div class="shipment-overview-skeleton" aria-hidden="true">
+
+                            <div class="dashboard-skeleton shipment-skeleton-title"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-number"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-text"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="shipment-overview-card">
+
+                        <div class="shipment-overview-content">
+
+                            <h3>
+                                Delivered
+                            </h3>
+
+                            <p id="delivered-shipments">
+                                0
+                            </p>
+
+                            <span class="card-delivered">
+                                Total delivered orders
+                            </span>
+
+                        </div>
+
+                        <div class="shipment-overview-skeleton" aria-hidden="true">
+
+                            <div class="dashboard-skeleton shipment-skeleton-title"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-number"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-text"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="shipment-overview-card">
+
+                        <div class="shipment-overview-content">
+
+                            <h3>
+                                Cancelled
+                            </h3>
+
+                            <p id="cancelled-shipments">
+                                0
+                            </p>
+
+                            <span class="card-cancelled">
+                                Total cancelled orders
+                            </span>
+
+                        </div>
+
+                        <div class="shipment-overview-skeleton" aria-hidden="true">
+
+                            <div class="dashboard-skeleton shipment-skeleton-title"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-number"></div>
+
+                            <div class="dashboard-skeleton shipment-skeleton-text"></div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- Shipment filters -->
+
+            <section
+                class="shipment-filters"
+                aria-labelledby="shipment-filters-title"
+            >
+
+                <h2 id="shipment-filters-title">
+                    Filters
+                </h2>
+
+
+                <form id="shipment-filter-form">
+
+
+                    <div class="filter-group">
+
+                        <label for="shipment-status">
+                            Status
+                        </label>
+
+                        <select
+                            id="shipment-status"
+                            name="status"
+                        >
+
+                            <option value="">
+                                All Statuses
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="shipped">
+                                Shipped
+                            </option>
+
+                            <option value="delivered">
+                                Delivered
+                            </option>
+
+                            <option value="cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button type="submit">
+                            Apply Filters
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="reset-shipment-filters"
+                        >
+                            Reset
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+            <!-- Shipments table -->
+
+            <section
+                class="shipment-table-section"
+                aria-labelledby="shipment-table-title"
+            >
+
+                <div class="section-heading">
+
+                    <h2 id="shipment-table-title">
+                        All Shipments
+                    </h2>
+
+                </div>
+
+
+                <div class="shipment-table-container">
+
+                    <table class="shipment-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">
+                                    Shipment
+                                </th>
+
+                                <th scope="col">
+                                    Order
+                                </th>
+
+                                <th scope="col">
+                                    Recipient
+                                </th>
+
+                                <th scope="col">
+                                    Phone
+                                </th>
+
+                                <th scope="col">
+                                    Address
+                                </th>
+
+                                <th scope="col">
+                                    Shipping Cost
+                                </th>
+
+                                <th scope="col">
+                                    Status
+                                </th>
+
+                                <th scope="col">
+                                    Date
+                                </th>
+
+                                <th scope="col">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="shipments-list">
+
+                            <!-- Shipments will be inserted here -->
+
+                        </tbody>
+
+                        <tbody class="shipment-table-skeleton" aria-hidden="true">
+
+                            <tr>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-phone"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-address"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-cost"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-date"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-phone"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-address"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-cost"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-date"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-phone"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-address"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-cost"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-date"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-phone"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-address"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-cost"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-date"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-phone"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-address"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-cost"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-date"></div></td>
+                                <td><div class="dashboard-skeleton shipment-table-skeleton-action"></div></td>
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td colspan="9">
+
+                                    <div class="shipment-table-footer">
+
+
+                                        <div class="shipments-count">
+
+                                            Showing
+
+                                            <span id="shipments-start">
+                                                0
+                                            </span>
+
+                                            -
+
+                                            <span id="shipments-end">
+                                                0
+                                            </span>
+
+                                            of
+
+                                            <span id="shipments-total">
+                                                0
+                                            </span>
+
+                                            shipments
+
+                                        </div>
+
+
+                                        <nav
+                                            class="shipment-pagination"
+                                            aria-label="Shipments pagination"
+                                        >
+
+                                            <button
+                                                type="button"
+                                                id="previous-page"
+                                                aria-label="Previous page"
+                                                disabled
+                                            >
+                                                Previous
+                                            </button>
+
+
+                                            <span id="current-page-display">
+                                                1/1
+                                            </span>
+
+
+                                            <button
+                                                type="button"
+                                                id="next-page"
+                                                aria-label="Next page"
+                                                disabled
+                                            >
+                                                Next
+                                            </button>
+
+                                        </nav>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
+

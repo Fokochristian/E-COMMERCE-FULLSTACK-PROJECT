@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/brands.js" defer></script>
+
+    <title>Brands | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="admin-page">
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+        <nav class="admin-navigation">
+
+            <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+            <a href="products.html" class="admin-nav-link"><i class="fa-solid fa-box"></i> Products</a>
+
+            <a href="orders.html" class="admin-nav-link"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+
+            <a href="customers.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Customers</a>
+
+            <a href="categories.html" class="admin-nav-link"><i class="fa-solid fa-layer-group"></i> Categories</a>
+
+            <a href="brands.html" class="admin-nav-link active"><i class="fa-solid fa-tags"></i> Brands</a>
+
+            <a href="payments.html" class="admin-nav-link"><i class="fa-solid fa-credit-card"></i> Payments</a>
+
+            <a href="shipment.html" class="admin-nav-link"><i class="fa-solid fa-truck"></i> Shpiment</a>
+
+            <a href="analytics.html" class="admin-nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+            
+        </nav>
+
+    </aside>
+
+    <div class="admin-main">
+
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2> <i class="fa-solid fa-tags"></i> Brands</h2>
+            </div>
+
+            <div class="admin-user-area">
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+
+                <button id="admin-logout-button" type="button">
+                    Logout
+                </button>
+            </div>
+
+        </header>
+
+        <main class="admin-content">
+
+            <section class="brands-page-header">
+
+                <div>
+                    <h1>Brands</h1>
+
+                    <p>
+                        Manage product brands.
+                    </p>
+                </div>
+
+                <button id="add-brand-button" type="button">
+                    Add Brand
+                </button>
+
+            </section>
+
+            <section class="brands-table-section">
+
+                <div class="section-heading">
+                    <h2>All Brands</h2>
+                </div>
+
+                <div class="brands-table-container">
+
+                    <table class="brands-table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+
+                       <tbody id="brands-list">
+                            <!-- Brands will be inserted here -->
+                        </tbody>
+
+                        <tbody class="brands-table-skeleton" aria-hidden="true">
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton brand-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<!-- Brand Modal -->
+
+<div id="brand-modal" class="brand-modal" hidden>
+
+    <div
+        id="brand-modal-overlay"
+        class="brand-modal-overlay"
+    ></div>
+
+    <div
+        class="brand-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="brand-modal-title"
+    >
+
+        <div class="brand-modal-header">
+
+            <h2 id="brand-modal-title">
+                Add Brand
+            </h2>
+
+            <button
+                type="button"
+                id="close-brand-modal"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="brand-form" novalidate>
+
+            <div class="form-group">
+
+                <label for="brand-name">
+                    Brand Name
+                </label>
+
+                <input
+                    type="text"
+                    id="brand-name"
+                    name="name"
+                    maxlength="50"
+                    required
+                >
+
+            </div>
+
+            <div
+                id="brand-form-error"
+                class="form-error"
+                hidden
+            ></div>
+
+            <div class="brand-form-actions">
+
+                <button
+                    type="button"
+                    id="cancel-brand-form"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit">
+                    Save Brand
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

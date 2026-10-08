@@ -1,0 +1,245 @@
+:root {
+  --primary-color: #111827;
+  --secondary-color: #6b7280;
+  --background-color: #f8fafc;
+  --surface-color: #ffffff;
+  --border-color: #e5e7eb;
+  --text-color: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+header nav > a {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+header nav > a:hover {
+  color: #374151;
+}
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+main section {
+  width: 100%;
+  max-width: 430px;
+  padding: 2rem;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+/* =========================
+   HEADING
+   ========================= */
+
+main section h1 {
+  margin: 0 0 1.75rem;
+  color: var(--primary-color);
+  font-size: 2rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* =========================
+   FORM
+   ========================= */
+
+#login-form > div {
+  margin-bottom: 1.25rem;
+}
+
+#login-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#login-form input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+/* =========================
+   VALIDATION ERRORS
+   ========================= */
+
+#email-error,
+#password-error {
+  min-height: 1.2rem;
+  margin: 0.4rem 0 0;
+  color: #b91c1c;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   LOGIN BUTTON
+   ========================= */
+
+#login-form button {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+#login-form button:hover {
+  background-color: #374151;
+}
+
+#login-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* =========================
+   ACCOUNT LINK
+   ========================= */
+
+.account-link {
+  margin: 1.5rem 0 0;
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.account-link a {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.account-link a:hover {
+  color: var(--secondary-color);
+}
+
+/* =========================
+   LOGIN MESSAGE
+   ========================= */
+
+#login-message {
+  min-height: 1.5rem;
+  margin: 1rem 0 0;
+  color: #b91c1c;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--surface-color);
+  text-align: center;
+}
+
+footer p {
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+  header nav {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 2rem 1rem;
+  }
+
+  main section {
+    padding: 1.5rem;
+  }
+
+  main section h1 {
+    font-size: 1.7rem;
+  }
+}

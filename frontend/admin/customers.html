@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/customers.js" defer></script>
+
+    <title>Customers | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="admin-page">
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+        <nav class="admin-navigation">
+            <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+            <a href="products.html" class="admin-nav-link"><i class="fa-solid fa-box"></i> Products</a>
+
+            <a href="orders.html" class="admin-nav-link"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+
+            <a href="customers.html" class="admin-nav-link active"><i class="fa-solid fa-users"></i> Customers</a>
+
+            <a href="categories.html" class="admin-nav-link"><i class="fa-solid fa-layer-group"></i> Categories</a>
+
+            <a href="brands.html" class="admin-nav-link"><i class="fa-solid fa-tags"></i> Brands</a>
+
+            <a href="payments.html" class="admin-nav-link"><i class="fa-solid fa-credit-card"></i> Payments</a>
+
+            <a href="shipment.html" class="admin-nav-link"><i class="fa-solid fa-truck"></i> Shipment</a>
+
+            <a href="analytics.html" class="admin-nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+            
+        </nav>
+
+    </aside>
+
+    <div class="admin-main">
+
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2><i class="fa-solid fa-users"></i> Customers</h2>
+            </div>
+
+            <div class="admin-user-area">
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+                <button id="admin-logout-button" type="button">
+                    Logout
+                </button>
+            </div>
+
+        </header>
+
+        <main class="admin-content">
+
+            <section class="customers-page-header" aria-labelledby="customers-title">
+
+                <div>
+                    <h1 id="customers-title">Customers</h1>
+
+                    <p>
+                        View registered customer accounts.
+                    </p>
+                </div>
+
+            </section>
+
+            <section class="customers-filters" aria-labelledby="customer-filters-title">
+
+                <h2 id="customer-filters-title">Search Customers</h2>
+
+                <form id="customer-search-form">
+
+                    <div class="filter-group">
+
+                        <label for="customer-search">
+                            Search
+                        </label>
+
+                        <input
+                            type="search"
+                            id="customer-search"
+                            name="search"
+                            placeholder="Search by name or email"
+                        >
+
+                    </div>
+
+                    <div class="filter-actions">
+
+                        <button type="submit">
+                            Search
+                        </button>
+
+                        <button type="button" id="reset-customer-search">
+                            Reset
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <section class="customers-table-section" aria-labelledby="customers-table-title">
+
+                <div class="section-heading">
+                    <h2 id="customers-table-title">
+                        Registered Customers
+                    </h2>
+                </div>
+
+                <div class="customers-table-container">
+
+                    <table class="customers-table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Registered</th>
+                                
+                            </tr>
+                        </thead>
+
+                        <tbody id="customers-list">
+                            <!-- Customers will be inserted here -->
+                        </tbody>
+
+                        <tbody class="customers-table-skeleton" aria-hidden="true">
+
+                            <tr>
+                                <td><div class="dashboard-skeleton customer-skeleton-id"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-email"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton customer-skeleton-id"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-email"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton customer-skeleton-id"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-email"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton customer-skeleton-id"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-email"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton customer-skeleton-id"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-email"></div></td>
+                                <td><div class="dashboard-skeleton customer-skeleton-date"></div></td>
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td colspan="4">
+
+                                    <div class="customers-table-footer">
+
+                                        <div class="customers-count">
+
+                                            Showing
+                                            <span id="customers-start">0</span>
+                                            -
+                                            <span id="customers-end">0</span>
+                                            of
+                                            <span id="customers-total">0</span>
+                                            customers
+
+                                        </div>
+
+                                        <nav
+                                            class="customers-pagination"
+                                            aria-label="Customers pagination"
+                                        >
+
+                                            <button
+                                                type="button"
+                                                id="previous-page"
+                                                aria-label="Previous page"
+                                                disabled
+                                            >
+                                                Previous
+                                            </button>
+
+                                            <span id="current-page-display">
+                                                1 / 1
+                                            </span>
+
+                                            <button
+                                                type="button"
+                                                id="next-page"
+                                                aria-label="Next page"
+                                                disabled
+                                            >
+                                                Next
+                                            </button>
+
+                                        </nav>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>

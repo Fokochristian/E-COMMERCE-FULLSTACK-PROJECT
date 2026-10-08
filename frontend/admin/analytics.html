@@ -1,0 +1,329 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <script type="module" src="js/analytics.js" defer></script>
+
+    <title>Analytics | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+
+  <body class="admin-page">
+    <div class="admin-layout">
+      <!-- Sidebar -->
+
+      <aside class="admin-sidebar" aria-label="Admin navigation">
+        <div class="admin-logo">
+          <a href="index.html">
+            <h1>Admin Panel</h1>
+          </a>
+        </div>
+
+        <nav class="admin-navigation">
+          <a href="index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-house"></i> Dashboard</a
+          >
+
+          <a href="products.html" class="admin-nav-link"
+            ><i class="fa-solid fa-box"></i> Products</a
+          >
+
+          <a href="orders.html" class="admin-nav-link"
+            ><i class="fa-solid fa-cart-shopping"></i> Orders</a
+          >
+
+          <a href="customers.html" class="admin-nav-link"
+            ><i class="fa-solid fa-users"></i> Customers</a
+          >
+
+          <a href="categories.html" class="admin-nav-link"
+            ><i class="fa-solid fa-layer-group"></i> Categories</a
+          >
+
+          <a href="brands.html" class="admin-nav-link"
+            ><i class="fa-solid fa-tags"></i> Brands</a
+          >
+
+          <a href="payments.html" class="admin-nav-link"
+            ><i class="fa-solid fa-credit-card"></i> Payments</a
+          >
+
+          <a href="shipment.html" class="admin-nav-link"
+            ><i class="fa-solid fa-truck"></i> Shpiment</a
+          >
+
+          <a href="analytics.html" class="admin-nav-link active"
+            ><i class="fa-solid fa-chart-line"></i> Analytics</a
+          >
+
+          <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a
+          >
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+
+      <div class="admin-main">
+        <!-- Topbar -->
+
+        <header class="admin-topbar">
+          <div class="admin-page-heading">
+            <h2>Analytics <i class="fa-solid fa-chart-line"></i></h2>
+          </div>
+
+          <div class="admin-user-area">
+            <span id="admin-user-name">
+              <i class="fa-solid fa-circle-user"></i>
+              Admin
+            </span>
+
+            <button id="admin-logout-button" type="button">Logout</button>
+          </div>
+        </header>
+
+        <!-- Page content -->
+
+        <main class="admin-content">
+          <!-- Page heading -->
+
+          <section
+            class="analytics-page-header"
+            aria-labelledby="analytics-title"
+          >
+            <div>
+              <h1 id="analytics-title">Analytics</h1>
+
+              <p>Track your store's sales, orders, and product performance.</p>
+            </div>
+          </section>
+
+          <!-- Analytics filters -->
+
+          <section
+            class="analytics-filters"
+            aria-labelledby="analytics-filters-title"
+          >
+            <h2 id="analytics-filters-title">Date Range</h2>
+
+            <form id="analytics-filter-form">
+              <div class="filter-group">
+                <label for="analytics-start-date"> Start Date </label>
+
+                <input type="date" id="analytics-start-date" name="startDate" />
+              </div>
+
+              <div class="filter-group">
+                <label for="analytics-end-date"> End Date </label>
+
+                <input type="date" id="analytics-end-date" name="endDate" />
+              </div>
+
+              <div class="filter-actions">
+                <button type="submit">Apply Filters</button>
+
+                <button type="button" id="reset-analytics-filters">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Analytics overview -->
+
+          <section
+            class="analytics-overview"
+            aria-labelledby="analytics-overview-title"
+          >
+            <h2 id="analytics-overview-title">Sales Overview</h2>
+
+            <div class="analytics-overview-grid">
+              <!-- Total sales revenue -->
+
+              <div class="analytics-overview-card">
+                <div class="analytics-overview-content">
+                  <h3>Total Sales Revenue</h3>
+
+                  <p id="total-revenue">0 FCFA</p>
+
+                  <span class="analytics-card-description">
+                    Revenue from shipped and delivered orders
+                  </span>
+                </div>
+
+                <div class="analytics-overview-skeleton" aria-hidden="true">
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-title"
+                  ></div>
+
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-number"
+                  ></div>
+
+                  <div class="dashboard-skeleton analytics-skeleton-text"></div>
+                </div>
+              </div>
+
+              <!-- Sales orders -->
+
+              <div class="analytics-overview-card">
+                <div class="analytics-overview-content">
+                  <h3>Sales Orders</h3>
+
+                  <p id="total-orders">0</p>
+
+                  <span class="analytics-card-description">
+                    Shipped and delivered orders
+                  </span>
+                </div>
+
+                <div class="analytics-overview-skeleton" aria-hidden="true">
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-title"
+                  ></div>
+
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-number"
+                  ></div>
+
+                  <div class="dashboard-skeleton analytics-skeleton-text"></div>
+                </div>
+              </div>
+
+              <!-- Units sold -->
+
+              <div class="analytics-overview-card">
+                <div class="analytics-overview-content">
+                  <h3>Units Sold</h3>
+
+                  <p id="units-sold">0</p>
+
+                  <span class="analytics-card-description">
+                    Total products sold
+                  </span>
+                </div>
+
+                <div class="analytics-overview-skeleton" aria-hidden="true">
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-title"
+                  ></div>
+
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-number"
+                  ></div>
+
+                  <div class="dashboard-skeleton analytics-skeleton-text"></div>
+                </div>
+              </div>
+
+              <!-- Average sales order value -->
+
+              <div class="analytics-overview-card">
+                <div class="analytics-overview-content">
+                  <h3>Average Sales Order Value</h3>
+
+                  <p id="average-order-value">0 FCFA</p>
+
+                  <span class="analytics-card-description">
+                    Average revenue per sales order
+                  </span>
+                </div>
+
+                <div class="analytics-overview-skeleton" aria-hidden="true">
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-title"
+                  ></div>
+
+                  <div
+                    class="dashboard-skeleton analytics-skeleton-number"
+                  ></div>
+
+                  <div class="dashboard-skeleton analytics-skeleton-text"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Revenue chart -->
+
+          <section
+            class="analytics-chart-section"
+            aria-labelledby="revenue-chart-title"
+          >
+            <div class="section-heading">
+              <h2 id="revenue-chart-title">Revenue Over Time</h2>
+            </div>
+            <div class="analytics-chart-container">
+              <div
+                class="analytics-chart-skeleton dashboard-skeleton"
+                aria-hidden="true"
+              ></div>
+              <canvas id="revenue-chart"></canvas>
+            </div>
+            
+          </section>
+
+          <!-- Order status chart -->
+
+          <section
+            class="analytics-chart-section"
+            aria-labelledby="order-status-chart-title"
+          >
+            <div class="section-heading">
+              <h2 id="order-status-chart-title">Orders by Status</h2>
+            </div>
+
+            <div class="analytics-chart-container">
+
+              <div
+                class="analytics-chart-skeleton dashboard-skeleton"
+                aria-hidden="true"
+              ></div>
+
+              <canvas id="order-status-chart"></canvas>
+            </div>
+
+          </section>
+
+          <!-- Top products chart -->
+
+          <section
+            class="analytics-chart-section"
+            aria-labelledby="top-products-chart-title"
+          >
+
+            <div class="section-heading">
+              <h2 id="top-products-chart-title">Top-Selling Products</h2>
+            </div>
+
+            <div class="analytics-chart-container">
+
+              <div
+                class="analytics-chart-skeleton dashboard-skeleton"
+                aria-hidden="true"
+              ></div>
+
+              <canvas id="top-products-chart"></canvas>
+            </div>
+
+          </section>
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

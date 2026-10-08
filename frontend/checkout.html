@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | E-Commerce</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body>
+
+    <header>
+
+        <nav aria-label="Main navigation">
+
+            <a
+                href="index.html"
+                aria-label="Go to Store Page"
+            >
+                Store
+            </a>
+
+            <div id="mobile-menu">
+
+                <form id="product-search">
+
+                    <label for="search">
+                        Search products
+                    </label>
+
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="Search products..."
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <div id="auth-navigation"></div>
+
+            </div>
+
+            <div id="header-actions">
+
+                <a
+                    href="cart.html"
+                    id="cart-link"
+                    aria-label="Shopping cart"
+                >
+                    Cart
+                </a>
+
+                <button
+                    id="menu-toggle"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section aria-labelledby="checkout-heading">
+
+            <h1 id="checkout-heading">
+                Checkout
+            </h1>
+
+            <form
+                id="checkout-form"
+                method="post"
+                novalidate
+            >
+
+                <div>
+
+                    <label for="recipient-name">
+                        Recipient name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipient-name"
+                        name="recipient_name"
+                        autocomplete="name"
+                        required
+                    >
+
+                    <p
+                        id="recipient-name-error"
+                        role="alert"
+                    ></p>
+
+                </div>
+
+
+                <div>
+
+                    <label for="phone-number">
+                        Phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone-number"
+                        name="phoneNumber"
+                        autocomplete="tel"
+                        required
+                    >
+
+                    <p
+                        id="phoneNumber-error"
+                        role="alert"
+                    ></p>
+
+                </div>
+
+
+                <div>
+
+                    <label for="address">
+                        Delivery address
+                    </label>
+
+                    <textarea
+                        name="address"
+                        id="address"
+                        autocomplete="street-address"
+                        required
+                    ></textarea>
+
+                    <p
+                        id="delivery-address-error"
+                        role="alert"
+                    ></p>
+
+                </div>
+
+
+                <button type="submit">
+                    Place order
+                </button>
+
+            </form>
+
+
+            <p
+                id="checkout-message"
+                role="alert"
+            ></p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            &copy; 2026 E-Commerce Store
+        </p>
+
+    </footer>
+
+
+    <script
+        type="module"
+        src="js/checkout.js"
+    ></script>
+
+</body>
+
+</html>

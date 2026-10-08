@@ -1,0 +1,68 @@
+/* GLOBAL ERROR PAGE */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6f8;
+    color: #1f2937;
+}
+
+.error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.error-content {
+    width: 100%;
+    max-width: 500px;
+    padding: 3rem 2rem;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.error-code {
+    margin-bottom: 1rem;
+    color: #111827;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.error-content h1 {
+    margin-bottom: 1rem;
+    font-size: 28px;
+    color: #1f2937;
+}
+
+.error-content p:not(.error-code) {
+    margin-bottom: 2rem;
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.error-content a {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    background-color: #111827;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.error-content a:hover {
+    background-color: #1f2937;
+}

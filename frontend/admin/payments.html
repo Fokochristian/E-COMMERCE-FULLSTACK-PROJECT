@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/payments.js"></script>
+
+    <title>Payments | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+
+<body class="admin-page">
+
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+
+        <nav class="admin-navigation">
+
+            <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+            <a href="products.html" class="admin-nav-link"><i class="fa-solid fa-box"></i> Products</a>
+
+            <a href="orders.html" class="admin-nav-link"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+
+            <a href="customers.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Customers</a>
+
+            <a href="categories.html" class="admin-nav-link"><i class="fa-solid fa-layer-group"></i> Categories</a>
+
+            <a href="brands.html" class="admin-nav-link"><i class="fa-solid fa-tags"></i> Brands</a>
+
+            <a href="payments.html" class="admin-nav-link active"><i class="fa-solid fa-credit-card"></i> Payments</a>
+
+            <a href="shipment.html" class="admin-nav-link"><i class="fa-solid fa-truck"></i> Shpiment</a>
+
+            <a href="analytics.html" class="admin-nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+            
+        </nav>
+
+    </aside>
+
+
+    <!-- Main content -->
+
+    <div class="admin-main">
+
+
+        <!-- Topbar -->
+
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2><i class="fa-solid fa-credit-card"></i> Payments</h2>
+            </div>
+
+
+            <div class="admin-user-area">
+
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+
+                <button
+                    id="admin-logout-button"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page content -->
+
+        <main class="admin-content">
+
+
+            <!-- Page heading -->
+
+            <section
+                class="payments-page-header"
+                aria-labelledby="payments-title"
+            >
+
+                <div>
+
+                    <h1 id="payments-title">
+                        Payments
+                    </h1>
+
+                    <p>
+                        Monitor customer payments, transactions, and payment status.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Payment overview -->
+
+            <section
+                class="payments-overview"
+                aria-labelledby="payments-overview-title"
+            >
+
+                <h2 id="payments-overview-title">
+                    Payment Overview
+                </h2>
+
+
+                <div class="payments-overview-grid">
+
+                    <div class="payments-overview-card">
+
+                        <div class="payments-overview-content">
+
+                            <h3>
+                                Total Payments
+                            </h3>
+
+                            <p id="total-payments">
+                                0
+                            </p>
+
+                            <span class="card-total-payment">
+                                Total number of payment
+                            </span>
+
+                        </div>
+
+                        <div class="payments-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton payment-skeleton-title"></div>
+                            <div class="dashboard-skeleton payment-skeleton-number"></div>
+                            <div class="dashboard-skeleton payment-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                                    <div class="payments-overview-card">
+
+                        <div class="payments-overview-content">
+
+                            <h3>
+                                Pending
+                            </h3>
+
+                            <p id="pending-payments">
+                                0
+                            </p>
+
+                            <span class="card-pending">
+                                Total number of pending payments
+                            </span>
+
+                        </div>
+
+                        <div class="payments-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton payment-skeleton-title"></div>
+                            <div class="dashboard-skeleton payment-skeleton-number"></div>
+                            <div class="dashboard-skeleton payment-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+                                        <div class="payments-overview-card">
+
+                        <div class="payments-overview-content">
+
+                            <h3>
+                                Successful
+                            </h3>
+
+                            <p id="successful-payments">
+                                0
+                            </p>
+
+                            <span class="card-successful">
+                                Total number of successful payments
+                            </span>
+
+                        </div>
+
+                        <div class="payments-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton payment-skeleton-title"></div>
+                            <div class="dashboard-skeleton payment-skeleton-number"></div>
+                            <div class="dashboard-skeleton payment-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+
+                        <div class="payments-overview-card">
+
+                        <div class="payments-overview-content">
+
+                            <h3>
+                                Failed
+                            </h3>
+
+                            <p id="failed-payments">
+                                0
+                            </p>
+
+                            <span class="card-failed">
+                                Total number of failed payments
+                            </span>
+
+                        </div>
+
+                            <div class="payments-overview-skeleton" aria-hidden="true">
+                            <div class="dashboard-skeleton payment-skeleton-title"></div>
+                            <div class="dashboard-skeleton payment-skeleton-number"></div>
+                            <div class="dashboard-skeleton payment-skeleton-text"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Search and filters -->
+
+            <section
+                class="payments-filters"
+                aria-labelledby="payment-filters-title"
+            >
+
+                <h2 id="payment-filters-title">
+                    Filters
+                </h2>
+
+
+                <form id="payment-filter-form">
+
+
+                    <div class="filter-group">
+
+                        <label for="payment-status">
+                            Status
+                        </label>
+
+                        <select
+                            id="payment-status"
+                            name="status"
+                        >
+
+                            <option value="">
+                                All Statuses
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="successful">
+                                Successful
+                            </option>
+
+                            <option value="failed">
+                                Failed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="payment-method">
+                            Payment Method
+                        </label>
+
+                        <select
+                            id="payment-method"
+                            name="paymentMethod"
+                        >
+
+                            <option value="">
+                                All Methods
+                            </option>
+
+                            <option value="MTN MONEY">
+                                MTN Money
+                            </option>
+
+                            <option value="ORANGE MONEY">
+                                Orange Money
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <label for="payment-search">
+                            Search
+                        </label>
+
+                        <input
+                            type="search"
+                            id="payment-search"
+                            name="search"
+                            placeholder="Payment ID, order, customer..."
+                        >
+
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button type="submit">
+                            Apply Filters
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="reset-payment-filters"
+                        >
+                            Reset
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+            <!-- Payments table -->
+
+            <section
+                class="payments-table-section"
+                aria-labelledby="payments-table-title"
+            >
+
+                <div class="section-heading">
+
+                    <h2 id="payments-table-title">
+                        All Payments
+                    </h2>
+
+                </div>
+
+
+                <div class="payments-table-container">
+
+                    <table class="payments-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">
+                                    Payment
+                                </th>
+
+                                <th scope="col">
+                                    Order
+                                </th>
+
+                                <th scope="col">
+                                    Customer
+                                </th>
+
+                                <th scope="col">
+                                    Amount
+                                </th>
+
+                                <th scope="col">
+                                    Method
+                                </th>
+
+                                <th scope="col">
+                                    Status
+                                </th>
+
+                                <th scope="col">
+                                    Date
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="payments-list">
+
+                            <!-- Payments will be inserted here -->
+
+                        </tbody>
+
+                        <tbody class="payments-table-skeleton" aria-hidden="true">
+
+                            <tr>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-amount"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-method"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-amount"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-method"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-amount"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-method"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-amount"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-method"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-date"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-short"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-amount"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-method"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton payment-table-skeleton-date"></div></td>
+                            </tr>
+
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td colspan="7">
+
+                                    <div class="payments-table-footer">
+
+
+                                        <div class="payments-count">
+
+                                            Showing
+
+                                            <span id="payments-start">
+                                                0
+                                            </span>
+
+                                            -
+
+                                            <span id="payments-end">
+                                                0
+                                            </span>
+
+                                            of
+
+                                            <span id="payments-total">
+                                                0
+                                            </span>
+
+                                            payments
+
+                                        </div>
+
+
+                                        <nav
+                                            class="payments-pagination"
+                                            aria-label="Payments pagination"
+                                        >
+
+                                            <button
+                                                type="button"
+                                                id="previous-page"
+                                                aria-label="Previous page"
+                                                disabled
+                                            >
+                                                Previous
+                                            </button>
+
+
+                                            <span id="current-page-display">
+                                                1/1
+                                            </span>
+
+
+                                            <button
+                                                type="button"
+                                                id="next-page"
+                                                aria-label="Next page"
+                                                disabled
+                                            >
+                                                Next
+                                            </button>
+
+                                        </nav>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

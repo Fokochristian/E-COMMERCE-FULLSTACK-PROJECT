@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>E-Commerce Store</title>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<link rel="stylesheet" href="css/store.css">
+
+</head>
+
+<body>
+
+<header>
+    <nav>
+
+        <a href="index.html" aria-label="Go to Store Page">
+            Store
+        </a>
+
+        <div id="mobile-menu">
+
+            <form id="product-search">
+
+                <label for="search">
+                    Search products
+                </label>
+
+                <input
+                    type="search"
+                    id="search"
+                    name="search"
+                    placeholder="Search products..."
+                >
+
+                <button type="submit">
+                    Search
+                </button>
+
+            </form>
+
+            <div id="auth-navigation"></div>
+
+        </div>
+
+        <div id="header-actions">
+
+            <a
+                href="cart.html"
+                id="cart-link"
+                aria-label="Shopping cart"
+            >
+                Cart
+            </a>
+
+            <button
+                id="menu-toggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </nav>
+</header>
+
+<main>
+
+    <section aria-labelledby="products-heading">
+
+       
+
+        <form id="product-filters">
+
+            <div>
+                <label for="category-filter">
+                    Category
+                </label>
+
+                <select
+                    name="category"
+                    id="category-filter"
+                >
+                    <option value="">
+                        All categories
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="brand-filter">
+                    Brand
+                </label>
+
+                <select
+                    name="brand"
+                    id="brand-filter"
+                >
+                    <option value="">
+                        All brands
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="min-price">
+                    Minimum price
+                </label>
+
+                <input
+                    type="number"
+                    id="min-price"
+                    name="minPrice"
+                    min="0"
+                    step="0.01"
+                >
+            </div>
+
+            <div>
+                <label for="max-price">
+                    Maximum price
+                </label>
+
+                <input
+                    type="number"
+                    id="max-price"
+                    name="maxPrice"
+                    min="0"
+                    step="0.01"
+                >
+            </div>
+
+            <p id="filter-error" role="alert"></p>
+
+            <button type="submit">
+                Apply filters
+            </button>
+
+            <button
+                type="button"
+                id="reset-filters"
+            >
+                Reset
+            </button>
+
+        </form>
+
+         <h1 id="products-heading">
+            Our Products
+        </h1>
+
+        <div id="product-list"></div>
+
+        <nav
+            id="pagination"
+            aria-label="Product pagination"
+        ></nav>
+
+        <template id="product-card-template">
+
+            <article class="product-card">
+
+                <img
+                    class="product-image"
+                    src=""
+                    alt=""
+                >
+
+                <div class="product-info">
+
+                    <h2 class="product-name"></h2>
+
+                    <p class="product-brand"></p>
+
+                    <p class="product-category"></p>
+
+                    <p class="product-price"></p>
+
+                    <p class="product-stock"></p>
+
+                    <a
+                        class="product-link"
+                        href=""
+                    >
+                        View product
+                    </a>
+
+                    <button
+                        class="add-to-cart"
+                        type="button"
+                    >
+                        Add to cart
+                    </button>
+
+                    <button
+                        class="wishlist-button"
+                        type="button"
+                    >
+                        Add to wishlist
+                    </button>
+
+                </div>
+
+            </article>
+
+        </template>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 E-Commerce Store</p>
+</footer>
+
+<script
+    type="module"
+    src="js/store.js"
+></script>
+
+
+</body>
+
+</html>

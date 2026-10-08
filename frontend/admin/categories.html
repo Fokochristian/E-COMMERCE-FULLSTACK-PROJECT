@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/categories.js" defer></script>
+
+    <title>Categories | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="admin-page">
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+        <nav class="admin-navigation">
+            <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+            <a href="products.html" class="admin-nav-link"><i class="fa-solid fa-box"></i> Products</a>
+
+            <a href="orders.html" class="admin-nav-link"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+
+            <a href="customers.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Customers</a>
+
+            <a href="categories.html" class="admin-nav-link active"><i class="fa-solid fa-layer-group"></i> Categories</a>
+
+            <a href="brands.html" class="admin-nav-link"><i class="fa-solid fa-tags"></i> Brands</a>
+
+            <a href="payments.html" class="admin-nav-link"><i class="fa-solid fa-credit-card"></i> Payments</a>
+
+            <a href="shipment.html" class="admin-nav-link"><i class="fa-solid fa-truck"></i> Shipment</a>
+
+            <a href="analytics.html" class="admin-nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+    
+        </nav>
+
+    </aside>
+
+    <div class="admin-main">
+
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2><i class="fa-solid fa-layer-group"></i> Categories</h2>
+            </div>
+
+            <div class="admin-user-area">
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+
+                <button id="admin-logout-button" type="button">
+                    Logout
+                </button>
+            </div>
+
+        </header>
+
+        <main class="admin-content">
+
+            <section class="categories-page-header">
+
+                <div>
+                    <h1>Categories</h1>
+
+                    <p>
+                        Manage product categories.
+                    </p>
+                </div>
+
+                <button id="add-category-button" type="button">
+                    Add Category
+                </button>
+
+            </section>
+
+            <section class="categories-table-section">
+
+                <div class="section-heading">
+                    <h2>All Categories</h2>
+                </div>
+
+                <div class="categories-table-container">
+
+                    <table class="categories-table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="categories-list">
+                            <!-- Categories will be inserted here -->
+                        </tbody>
+
+                        <tbody class="categories-table-skeleton" aria-hidden="true">
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-id"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-name"></div>
+                                </td>
+
+                                <td>
+                                    <div class="dashboard-skeleton category-skeleton-action"></div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+<!-- Category Modal -->
+
+<div id="category-modal" class="category-modal" hidden>
+
+    <div
+        id="category-modal-overlay"
+        class="category-modal-overlay"
+    ></div>
+
+    <div
+        class="category-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="category-modal-title"
+    >
+
+        <div class="category-modal-header">
+
+            <h2 id="category-modal-title">
+                Add Category
+            </h2>
+
+            <button
+                type="button"
+                id="close-category-modal"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="category-form" novalidate>
+
+            <div class="form-group">
+
+                <label for="category-name">
+                    Category Name
+                </label>
+
+                <input
+                    type="text"
+                    id="category-name"
+                    name="name"
+                    maxlength="50"
+                    required
+                >
+
+            </div>
+
+            <div
+                id="category-form-error"
+                class="form-error"
+                hidden
+            ></div>
+
+            <div class="category-form-actions">
+
+                <button
+                    type="button"
+                    id="cancel-category-form"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit">
+                    Save Category
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

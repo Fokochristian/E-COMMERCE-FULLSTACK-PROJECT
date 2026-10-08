@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <script type="module" src="js/admin-layout.js" defer></script>
+    <script type="module" src="js/products.js" defer></script>
+<title>Products | Admin Dashboard</title>
+
+<link rel="stylesheet" href="css/admin.css">
+
+
+</head>
+
+<body class="admin-page">
+
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+
+        <div class="admin-logo">
+            <a href="index.html">
+                <h1>Admin Panel</h1>
+            </a>
+        </div>
+
+        <nav class="admin-navigation">
+
+            <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+
+            <a href="products.html" class="admin-nav-link active"><i class="fa-solid fa-box"></i> Products</a>
+
+            <a href="orders.html" class="admin-nav-link"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+
+            <a href="customers.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Customers</a>
+
+            <a href="categories.html" class="admin-nav-link"><i class="fa-solid fa-layer-group"></i> Categories</a>
+
+            <a href="brands.html" class="admin-nav-link"><i class="fa-solid fa-tags"></i> Brands</a>
+
+            <a href="payments.html" class="admin-nav-link "><i class="fa-solid fa-credit-card"></i> Payments</a>
+
+            <a href="shipment.html" class="admin-nav-link"><i class="fa-solid fa-truck"></i> Shpiment</a>
+
+            <a href="analytics.html" class="admin-nav-link"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+            <a href="../index.html" class="admin-nav-link"
+            ><i class="fa-solid fa-store"></i> Store</a>
+
+            
+        </nav>
+
+    </aside>
+
+
+    <!-- Main content -->
+    <div class="admin-main">
+
+        <!-- Topbar -->
+        <header class="admin-topbar">
+
+            <div class="admin-page-heading">
+                <h2><i class="fa-solid fa-box"></i> Products</h2>
+            </div>
+
+            <div class="admin-user-area">
+                <span id="admin-user-name">
+                    <i class="fa-solid fa-circle-user"></i>
+                    Admin
+                </span>
+
+                <button id="admin-logout-button" type="button">
+                    Logout
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- Page content -->
+        <main class="admin-content">
+
+            <!-- Page heading -->
+            <section class="products-page-header" aria-labelledby="products-title">
+
+                <div>
+                    <h1 id="products-title">Products</h1>
+                    <p>Manage your store products, inventory, and availability.</p>
+                </div>
+
+                <button id="add-product-button" type="button">
+                    Add Product
+                </button>
+
+            </section>
+
+
+            <!-- Search and filters -->
+            <section class="products-filters" aria-labelledby="product-filters-title">
+
+                <h2 id="product-filters-title">Search and Filters</h2>
+
+                <form id="product-filter-form">
+
+                    <div class="filter-group">
+                        <label for="product-search">Search</label>
+
+                        <input
+                            type="search"
+                            id="product-search"
+                            name="search"
+                            placeholder="Search products..."
+                        >
+                    </div>
+
+
+                    <div class="filter-group">
+                        <label for="product-category">Category</label>
+
+                        <select id="product-category" name="category">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+
+
+                    <div class="filter-group">
+                        <label for="product-brand">Brand</label>
+
+                        <select id="product-brand" name="brand">
+                            <option value="">All Brands</option>
+                        </select>
+                    </div>
+
+
+                    <div class="filter-group">
+                        <label for="minimum-price">Minimum Price</label>
+
+                        <input
+                            type="number"
+                            id="minimum-price"
+                            name="minPrice"
+                            min="0"
+                            placeholder="0"
+                        >
+                    </div>
+
+
+                    <div class="filter-group">
+                        <label for="maximum-price">Maximum Price</label>
+
+                        <input
+                            type="number"
+                            id="maximum-price"
+                            name="maxPrice"
+                            min="0"
+                            placeholder="No maximum"
+                        >
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button type="submit">
+                            Apply Filters
+                        </button>
+
+                        <button
+                            type="button"
+                            id="reset-product-filters"
+                        >
+                            Reset
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- Products table -->
+            <section
+                class="products-table-section"
+                aria-labelledby="products-table-title"
+            >
+
+                <div class="section-heading">
+                    <h2 id="products-table-title">All Products</h2>
+                </div>
+
+
+                <div class="products-table-container">
+
+                    <table class="products-table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="products-list">
+                            <!-- Products will be inserted here -->
+                        </tbody>
+
+                        <tbody class="products-table-skeleton" aria-hidden="true">
+                            <tr>
+                                <td><div class="dashboard-skeleton product-skeleton-image"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-price"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-stock"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton product-skeleton-image"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-price"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-stock"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton product-skeleton-image"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-price"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-stock"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton product-skeleton-image"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-price"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-stock"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-action"></div></td>
+                            </tr>
+
+                            <tr>
+                                <td><div class="dashboard-skeleton product-skeleton-image"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-name"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-text"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-price"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-stock"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-status"></div></td>
+                                <td><div class="dashboard-skeleton product-skeleton-action"></div></td>
+                            </tr>
+                        </tbody>
+
+
+                        <tfoot>
+
+                            <tr>
+
+                                <td colspan="8">
+
+                                    <div class="products-table-footer">
+
+                                        <div class="products-count">
+                                            Showing
+                                            <span id="products-start">0</span>
+                                            -
+                                            <span id="products-end">0</span>
+                                            of
+                                            <span id="products-total">0</span>
+                                            products
+                                        </div>
+
+
+                                        <nav
+                                            class="products-pagination"
+                                            aria-label="Products pagination"
+                                        >
+
+                                            <button
+                                                type="button"
+                                                id="previous-page"
+                                                aria-label="Previous page"
+                                                disabled
+                                            >
+                                                Previous
+                                            </button>
+
+
+                                            <span id="current-page-display">
+                                                1/1
+                                            </span>
+
+
+                                            <button
+                                                type="button"
+                                                id="next-page"
+                                                aria-label="Next page"
+                                                disabled
+                                            >
+                                                Next
+                                            </button>
+
+                                        </nav>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- Product modal -->
+<div
+    class="product-modal"
+    id="product-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="product-modal-title"
+    hidden
+>
+
+    <div class="product-modal-overlay" id="product-modal-overlay"></div>
+
+
+    <div class="product-modal-content">
+
+        <div class="product-modal-header">
+
+            <h2 id="product-modal-title">
+                Add Product
+            </h2>
+
+            <button
+                type="button"
+                id="close-product-modal"
+                aria-label="Close product form"
+            >
+                &times;
+            </button>
+
+        </div>
+
+
+        <form
+            id="product-form"
+            enctype="multipart/form-data" novalidate
+        >
+
+            <div class="form-group">
+
+                <label for="product-name">
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="product-name"
+                    name="name"
+                    required
+                >
+
+                <small class="form-error" id="product-name-error" hidden></small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="product-description">
+                    Description
+                </label>
+
+                <textarea
+                    id="product-description"
+                    name="description"
+                    rows="5"
+                    required
+                ></textarea>
+
+                <small class="form-error" id="product-description-error" hidden></small>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="product-price">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-price"
+                        name="price"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                    <small class="form-error" id="product-price-error" hidden></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="product-stock">
+                        Stock Quantity
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-stock"
+                        name="stock_quantity"
+                        min="0"
+                        step="1"
+                        required
+                    >
+
+                    <small class="form-error" id="product-stock-error" hidden></small>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="product-form-category">
+                        Category
+                    </label>
+
+                    <select
+                        id="product-form-category"
+                        name="category_id"
+                        required
+                    >
+                        <option value="">
+                            Select Category
+                        </option>
+                    </select>
+
+                    <small class="form-error" id="product-category-error" hidden></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="product-form-brand">
+                        Brand
+                    </label>
+
+                    <select
+                        id="product-form-brand"
+                        name="brand_id"
+                        required
+                    >
+                        <option value="">
+                            Select Brand
+                        </option>
+                    </select>
+
+                    <small class="form-error" id="product-brand-error" hidden></small>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="product-image">
+                    Product Image
+                </label>
+
+                <input
+                    type="file"
+                    id="product-image"
+                    name="image"
+                    accept="image/*"
+                    required
+                >
+
+                <small class="form-error" id="product-image-error" hidden></small>
+
+            </div>
+
+
+            <div
+                id="current-product-image"
+                class="current-product-image"
+                hidden
+            >
+                <!-- Current product image will appear here when editing -->
+            </div>
+
+
+            <div class="product-form-actions">
+
+                <button
+                    type="button"
+                    id="cancel-product-form"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    id="save-product-button"
+                >
+                    Save Product
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
