@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://e-commerce-fullstack-project.pages.dev/sitemap.xml

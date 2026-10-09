@@ -1,6 +1,6 @@
 import { getProductById, addToCart } from "./api.js"
 import { setupNavigation } from "./navigation.js"
-import { requireAuth } from "./auth.js"
+
 
 
   
@@ -13,6 +13,51 @@ const productDetails = document.querySelector("#product-details")
 
 const loadProduct = async () => {
     const product = await getProductById(productId)
+
+    document.title = `${product.product.name} | Orxeva`
+
+    const metaDescription = document.querySelector(
+        'meta[name="description"]'
+    )
+
+    metaDescription.setAttribute(
+        "content",
+        product.product.description
+    )
+
+    const canonicalUrl = document.querySelector(
+        'link[rel="canonical"]'
+    )
+
+    canonicalUrl.setAttribute(
+        "href",
+        `${window.location.origin}${window.location.pathname}?id=${productId}`
+    )
+
+    const productSchema = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": product.product.name,
+        "description": product.product.description,
+        "image": [product.product.image_path],
+        "offers": {
+            "@type": "Offer",
+            "price": Number(product.product.price),
+            "priceCurrency": "XAF",
+            "availability": product.product.stock_quantity > 0
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+            "url": `${window.location.origin}${window.location.pathname}?id=${productId}`
+        }
+    }
+
+    const productSchemaScript = document.createElement("script")
+
+    productSchemaScript.type = "application/ld+json"
+
+    productSchemaScript.textContent = JSON.stringify(productSchema)
+
+    document.head.appendChild(productSchemaScript)
 
     const productName = document.createElement("h2")
     productName.textContent = product.product.name
@@ -86,7 +131,6 @@ const loadProduct = async () => {
 
 }
 
-requireAuth()
 setupNavigation()
 loadProduct()
 
