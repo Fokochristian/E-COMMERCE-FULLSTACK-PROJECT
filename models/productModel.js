@@ -92,6 +92,17 @@ const getAllProducts = async (search, categoryId = null, brandId = null, minimum
         total: Number(countResult.rows[0].count)
     }
 }
+const getProductsForSitemap = async () => {
+    const result = await pool.query(`
+        SELECT id
+        FROM products
+        WHERE is_available = true
+        ORDER BY id ASC
+    `)
+
+    return result.rows
+}
+
 const getAllProductsAdmin = async (search, categoryId = null, brandId = null, minimumPrice = null, maximumPrice = null, page = 1, limit = 10) => {
     const offset = (page - 1) * limit
 
@@ -155,4 +166,4 @@ const restoreProduct = async (productId) => {
     return result.rows[0]
 }
 
-module.exports = {createProduct, findCategoryById, findBrandById, findName, getAllProducts, getAllProductsAdmin, findProductById, findProductByIdAdmin, updateProduct, deleteProduct, restoreProduct}
+module.exports = {createProduct, findCategoryById, findBrandById, findName, getAllProducts, getAllProductsAdmin, findProductById, findProductByIdAdmin, updateProduct, deleteProduct, restoreProduct, getProductsForSitemap}

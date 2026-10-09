@@ -15,7 +15,8 @@ const {
   findBrandById,
   findProductById,
   findProductByIdAdmin,
-  findName
+  findName,
+  getProductsForSitemap
 } = require("../models/productModel")
 
 const createProduct = async (req, res) => {
@@ -125,6 +126,15 @@ const getAllProducts = async (req, res) => {
   return res.status(StatusCodes.OK).json({success: true, allProducts: products, pagination: {
     page: pageNumber, limit: limitNumber, total, totalPages
   }})
+}
+
+const getSitemapProducts = async (req, res) => {
+    const products = await getProductsForSitemap()
+
+    res.status(200).json({
+        success: true,
+        products
+    })
 }
 
 const getAllProductsAdmin = async (req, res) => {
@@ -337,4 +347,4 @@ const restoreProduct = async (req, res) => {
   })
 }
 
-module.exports = { createProduct, getAllProducts, getAllProductsAdmin,getSingleProductAdmin, getSingleProduct, updateProduct, deleteProduct, restoreProduct };
+module.exports = { createProduct, getAllProducts, getAllProductsAdmin,getSingleProductAdmin, getSingleProduct, updateProduct, deleteProduct, restoreProduct, getSitemapProducts };
